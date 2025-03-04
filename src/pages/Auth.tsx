@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatedInput } from '@/components/AnimatedInput';
@@ -64,7 +63,6 @@ const Auth = () => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
     
-    // Clear error for this field when user types
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -77,7 +75,6 @@ const Auth = () => {
     
     setIsLoading(true);
     
-    // Simulate API call
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       
@@ -93,7 +90,6 @@ const Auth = () => {
         });
       }
       
-      // Redirect to dashboard or home
       navigate('/');
     } catch (error) {
       toast({
@@ -125,16 +121,20 @@ const Auth = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center px-4 py-12">
-      <Particles className="absolute inset-0 z-0" quantity={40} />
+    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4 py-12">
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-pink-100 via-purple-100 to-indigo-100 opacity-70"></div>
       
-      <div className="absolute inset-0 z-0 bg-gradient-radial from-transparent to-white/30 opacity-70" />
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-purple-200/30 to-transparent rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3"></div>
+      
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-t from-blue-200/30 to-transparent rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3"></div>
+      
+      <Particles className="absolute inset-0 z-0" quantity={60} staticity={30} ease={60} />
       
       <div className="relative z-10 w-full max-w-md">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="mb-8 text-center"
         >
           <h1 className="text-4xl font-bold tracking-tight text-foreground text-glow animate-pulse-slow">
@@ -148,8 +148,8 @@ const Auth = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="glass-card backdrop-blur-xl p-8 shadow-glow"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="glass-card backdrop-blur-xl p-8 shadow-glow border border-white/20 bg-white/10"
         >
           <div className="mb-6 flex rounded-lg bg-muted p-1">
             <button
